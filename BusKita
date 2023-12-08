@@ -1,0 +1,111 @@
+FUNGSI main():
+    INISIALISASI pessanger_info = null
+    INISIALISASI admin
+    INISIALISASI ticket_info
+    INISIALISASI payment
+    LAKUKAN
+        CETAK "Welcome To BusKita"
+        LAKUKAN
+            CETAK "1. Buat Akun Baru"
+            CETAK "2. Login"
+            CETAK "3. Exit"
+            INPUT pilihan_menu
+
+            JIKA pilihan_menu == 1
+                pengguna_saat_ini = FUNGSI_Buat_akun_baru(pessanger_info)
+            JIKA pilihan_menu == 2
+                FUNGSI_Login(pessanger_info)
+            JIKA pilihan_menu == 3
+                Exit
+            LAINNYA
+                CETAK "Perintah tidak tersedia silahkan masukkan ulang!"
+        SELAMA pengguna_saat_ini == null
+
+        LAKUKAN
+            CETAK "1. Pesan Tiket"
+            CETAK "2. Lihat Tiket"
+            INPUT pilihan_menu_utama
+
+            JIKA pilihan_menu_utama == 1
+                FUNGSI_PESAN_TIKET(pessanger_info,ticket_info )
+            JIKA pilihan_menu_utama == 2
+                FUNGSI_LIHAT_TIKET(ticket_info)
+             LAINNYA
+                CETAK Apakah anda masih ingin berada di Aplikasi BusKita? [yes/no]"
+        SELAMA pengguna_saat_ini != null
+    SELAMA true
+
+FUNGSI_LOGIN(pessanger_info):
+    INPUT username
+    INPUT password
+
+    UNTUK setiap pengguna DALAM pessanger_info
+        JIKA pengguna.username == username DAN pengguna.password == password
+            CETAK "Login Succesfully!"
+            KEMBALIKAN pengguna
+    
+FUNGSI_REGISTRASI(pessanger_info):
+    INPUT username
+    INPUT password
+
+    UNTUK setiap pengguna DALAM daftar_pengguna
+        JIKA pengguna.username == username
+            CETAK "Registration Succesfully."
+            KEMBALIKAN
+
+    tambahkan PENGUNA_BARU(username, password) ke pessanger_info
+    CETAK "Registrasi berhasil. Silakan login."
+
+FUNGSI_Pesan_Tiket(admin, ticket_info):
+  
+    INPUT Masukkan Nama:
+       
+    INPUT Masukkan Jumlah Penumpang:
+
+    CETAK "1: Giwangan"
+    CETAK "2: Jombor"
+    CETAK "3: Gamping"
+    CETAK "4: Adisutjipto"
+    INPUT Masukkan Terminal Keberangkatan
+
+    CETAK "1: Giwangan"
+    CETAK "2: Jombor"
+    CETAK "3: Gamping"
+    CETAK "4: Aditsutjipto"
+    INPUT Masukkan lokasi tujuan :
+
+    INPUT Masukkan tanggal keberangkatan 07-05-1992 :
+
+    CETAK "[1]__[2]__[3]__[4]__[5]__[6]__[7]__[8]__[9]__[10]
+    [11]_[12]_[13]_[14]_[15]_[16]_[17]_[18]_[19]_[20]
+    [21]_[22]_[23]_[24]_[25]_[26]_[27]_[28]_[29]_[30]"
+    INPUT Pilih nomor kursi:
+
+    CETAK "1. Eksekutif : Rp 5.000,00"
+    CETAK "2. Ekonomi : Rp 3.500,00"
+    INPUT Pilih Tipe Bus :
+
+    CETAK "ID Ticket kamu :"
+    CETAK "Data Save successfully"
+
+    CETAK "Pilih metode pembayaran:"
+    CETAK "1. Cash"
+    CETAK "2. Transfer Bank"
+    CETAK "3. E-Wallet"
+    INPUT Masukkan_pilihan
+
+    TOTAL_BAYAR = HITUNG_TOTAL_BAYAR(payment)
+
+    CETAK "Total pembayaran: " + TOTAL_BAYAR
+    CETAK "Silakan lakukan pembayaran sesuai instruksi yang diberikan."
+
+    tambahkan TIKET_BARU(nama, tujuan, tanggal_keberangkatan, jumlah_tiket, metode_pembayaran, TOTAL_BAYAR) ke ticket_info
+
+FUNGSI_LIHAT_TIKET(pessanger):
+    INPUT Masukkan Booking ID  :
+    UNTUK setiap tiket DALAM daftar_tiket
+        JIKA tiket.pengguna == pengguna
+            CETAK "nama:" + tiket.nama + ",tujuan:" +tiket.tanggal_keberangkatan + ",Jumlah_penumpang:" +tiket.jumlah_penumpang+ ",Kursi:" + tiket.kursi + ",Tipe_Bus:" +tiket.tipe_bus+ ",Harga:" +tiket.harga
+
+FUNGSI EXIT():
+    CETAK "Terima kasih telah menggunakan BusKita!"
